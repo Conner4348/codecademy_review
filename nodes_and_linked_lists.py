@@ -53,23 +53,33 @@ class Linked_List:
         prev_node = None
         next_node = current_node.get_next_node()
 
-        if prev_node == None and next_node == None:
+        if next_node == None:
             return 'Cannot remove only node in list.'
-        while next_node:
+        while current_node:
             if current_node.get_value() == value:
-                if prev_node == None:
-                    self.head = next_node
-                elif next_node == None:
-                    prev_node.set_link_node(None)
-                else:
-                    prev_node.set_link_node(next_node)
-                return f'Successfully removed {value}'
+                print(f'{value} was found in the list.')
+                return current_node
+
+                #if prev_node == None:
+                #    self.head = next_node
+                #elif next_node == None:
+                #    prev_node.set_link_node(None)
+                #else:
+                #    prev_node.set_link_node(next_node)
+                #return f'Successfully removed {value}'
             prev_node = current_node
             current_node = current_node.get_next_node()
-            next_node = current_node.get_next_node()
+            if current_node == None:
+                next_node = None
+            else:
+                next_node = current_node.get_next_node()
 
-        
-        return f'{value} was not found in the list'
+            # Write code to check the current nodes for each variable for each iteration.
+            
+            
+
+        print(f'{value} was not found in the list.')
+        return
     
 
 
