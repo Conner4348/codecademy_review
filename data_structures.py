@@ -46,23 +46,43 @@ class Linked_List:
                 current_node = current_node.get_next_node()
         return string_list
     
+
+    # remove_node is not working, figure out why before looking at code.
     def remove_node(self, value):
         current_node = self.head
         prev_node = None
         next_node = current_node.get_next_node()
 
         if prev_node == None and next_node == None:
-            print('Cannot remove only node in list.')
-            return
-        while current_node:
+            return 'Cannot remove only node in list.'
+        while next_node:
             if current_node.get_value() == value:
                 if prev_node == None:
                     self.head = next_node
                 elif next_node == None:
                     prev_node.set_link_node(None)
                 else:
-                    pass
-                    # CODE GOES HERE
+                    prev_node.set_link_node(next_node)
+                return f'Successfully removed {value}'
+            prev_node = current_node
+            current_node = current_node.get_next_node()
+            next_node = current_node.get_next_node()
 
         
-        return self.head
+        return f'{value} was not found in the list'
+    
+
+
+
+# TESTING
+
+db = Linked_List(0)
+db.add_to_end(1)
+db.add_to_beginning(2)
+db.add_to_end(3)
+db.add_to_beginning(4)
+print(db.stringify_list())
+print('')
+db.remove_node(3)
+db.remove_node(5)
+print(db.stringify_list())
