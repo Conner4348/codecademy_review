@@ -46,40 +46,23 @@ class Linked_List:
                 current_node = current_node.get_next_node()
         return string_list
     
-
-    # remove_node is not working, figure out why before looking at code.
+    def get_head_node(self):
+        return self.head
+    
     def remove_node(self, value):
-        current_node = self.head
-        prev_node = None
-        next_node = current_node.get_next_node()
+        current_node = self.get_head_node()
 
-        if next_node == None:
-            return 'Cannot remove only node in list.'
-        while current_node:
-            if current_node.get_value() == value:
-                print(f'{value} was found in the list.')
-                return current_node
-
-                #if prev_node == None:
-                #    self.head = next_node
-                #elif next_node == None:
-                #    prev_node.set_link_node(None)
-                #else:
-                #    prev_node.set_link_node(next_node)
-                #return f'Successfully removed {value}'
-            prev_node = current_node
-            current_node = current_node.get_next_node()
-            if current_node == None:
-                next_node = None
-            else:
+        if current_node.get_value() == value:
+            self.head = current_node.get_next_node()
+        else:
+            while current_node:
+                #print(f'The value of the current node is {current_node.get_value()}')
                 next_node = current_node.get_next_node()
-
-            # Write code to check the current nodes for each variable for each iteration.
-            
-            
-
-        print(f'{value} was not found in the list.')
-        return
+                if next_node.get_value() == value:
+                    current_node.set_link_node(next_node.get_next_node())
+                    current_node = None
+                else:
+                    current_node = next_node
     
 
 
@@ -95,4 +78,5 @@ print(db.stringify_list())
 print('')
 db.remove_node(3)
 db.remove_node(5)
+db.remove_node(2)
 print(db.stringify_list())
