@@ -16,6 +16,9 @@ class Node:
         return self.link
     
 
+
+
+
 class Linked_List:
 
     def __init__(self, value):
@@ -73,6 +76,9 @@ class Linked_List:
                     next_node = None
                 else:
                     current_node = next_node
+
+    def swap_nodes(self, value_one, value_two):
+        pass
     
 
 
