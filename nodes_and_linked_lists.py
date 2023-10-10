@@ -50,19 +50,23 @@ class Linked_List:
         return self.head
     
     def remove_node(self, value):
+
         current_node = self.get_head_node()
         next_node = 'temp'
-
+        
         if current_node.get_value() == value:
-            self.head = current_node.get_next_node()
+            if current_node.get_next_node() == None:
+                self.head = None
+            else:
+                self.head = current_node.get_next_node()
         else:
             while next_node:
                 print(f'The value of the current node is {current_node.get_value()}')
                 next_node = current_node.get_next_node()
                 if  next_node == None:
-                    break
-                if next_node.get_value() == value: # Something wrong with this line of code.
-                    if next_node != None:
+                    continue # continue moves onto the next iteration which will break the loop, since next_node is None.
+                if next_node.get_value() == value:
+                    if next_node != None: # Making sure next_node is not None prevents error.
                         current_node.set_link_node(next_node.get_next_node())
                     else:
                         current_node.set_link_node(None)
