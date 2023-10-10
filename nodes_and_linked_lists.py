@@ -51,16 +51,22 @@ class Linked_List:
     
     def remove_node(self, value):
         current_node = self.get_head_node()
+        next_node = 'temp'
 
         if current_node.get_value() == value:
             self.head = current_node.get_next_node()
         else:
-            while current_node:
-                #print(f'The value of the current node is {current_node.get_value()}')
+            while next_node:
+                print(f'The value of the current node is {current_node.get_value()}')
                 next_node = current_node.get_next_node()
-                if next_node.get_value() == value:
-                    current_node.set_link_node(next_node.get_next_node())
-                    current_node = None
+                if  next_node == None:
+                    break
+                if next_node.get_value() == value: # Something wrong with this line of code.
+                    if next_node != None:
+                        current_node.set_link_node(next_node.get_next_node())
+                    else:
+                        current_node.set_link_node(None)
+                    next_node = None
                 else:
                     current_node = next_node
     
@@ -76,7 +82,8 @@ db.add_to_end(3)
 db.add_to_beginning(4)
 print(db.stringify_list())
 print('')
-db.remove_node(3)
-db.remove_node(5)
-db.remove_node(2)
+#db.remove_node(3)
+#db.remove_node(5)
+#db.remove_node(2)
+db.remove_node(4)
 print(db.stringify_list())
