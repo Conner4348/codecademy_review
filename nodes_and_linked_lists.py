@@ -80,26 +80,43 @@ class Linked_List:
                 else:
                     current_node = next_node
 
-    def swap_nodes(self, value_one, value_two):
+def swap_nodes(list, value_one, value_two):
         
-        current_node = self.head
-        next_node = 'temp'
+    node1 = list.head
+    node2 = list.head
+    node1_prev = None
+    node2_prev = None
 
-        if current_node.get_value() == value_one:
-            node_one = current_node
-            node_one_prev = None
-        if current_node.get_value() == value_two:
-            node_two = current_node
-            node_two_prev = None
+    if value_one == value_two:
+        print('Values are the same, swap not possible')
+        return
 
-        while next_node:
-            next_node = current_node.get_next_node()
-            if next_node == None:
-                pass
+    while node1 != None:
+        if node1.get_value() == value_one:
+            break
+        node1_prev = node1
+        node1 = node1.get_next_node()
+    
+    while node2 != None:
+        if node2.get_value() == value_two:
+            break
+        node2_prev = node2
+        node2 = node2.get_next_node()
 
-# TRY HAVING A LIST THAT CONTAINS BOTH VALUES AND IF A VALUE IS FOUND, REMOVE IT
-# FROM THE LIST.
-# ONCE THE LIST IS EMPTY, THEN SWAP THE NODES WITH THE VALUES.
+    if (node1 == None or node2 == None):
+        print('Not possible, at least one of the nodes does not exist.')
+        return
+
+    if node1_prev == None:
+        list.head = node2
+    else:
+        node1_prev.set_link_node(node2)
+
+    temp = node1.get_next_node()
+    node1.set_link_node(node2.get_next_node())
+    node2.set_link_node(temp)
+
+# SOMETHING IS WRONG WITH SWAP NODES FUNCTION, CODE NOT WORKING.
                 
     
 
@@ -114,8 +131,9 @@ db.add_to_end(3)
 db.add_to_beginning(4)
 print(db.stringify_list())
 print('')
-print(db.remove_node(3))
+#print(db.remove_node(3))
 #db.remove_node(5)
 #print(db.remove_node(2))
 #print(db.remove_node(4))
+swap_nodes(db, 2, 3)
 print(db.stringify_list())
