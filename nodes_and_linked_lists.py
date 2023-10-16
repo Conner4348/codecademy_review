@@ -91,33 +91,36 @@ def swap_nodes(list, value_one, value_two):
         print('Values are the same, swap not possible')
         return
 
-    while node1 != None:
+    while node1 is not None:
         if node1.get_value() == value_one:
             break
         node1_prev = node1
         node1 = node1.get_next_node()
     
-    while node2 != None:
+    while node2 is not None:
         if node2.get_value() == value_two:
             break
         node2_prev = node2
         node2 = node2.get_next_node()
 
-    if (node1 == None or node2 == None):
+    if (node1 is None or node2 is None):
         print('Not possible, at least one of the nodes does not exist.')
         return
 
-    if node1_prev == None:
+    if node1_prev is None:
         list.head = node2
     else:
         node1_prev.set_link_node(node2)
+
+    if node2_prev is None:
+        list.head = node1
+    else:
+        node2_prev.set_link_node(node1)
 
     temp = node1.get_next_node()
     node1.set_link_node(node2.get_next_node())
     node2.set_link_node(temp)
 
-# SOMETHING IS WRONG WITH SWAP NODES FUNCTION, CODE NOT WORKING.
-                
     
 
 
