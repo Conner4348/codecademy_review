@@ -16,6 +16,12 @@ class Node_D:
     def get_prev_node(self):
         return self.prev_link
     
+    def set_next_node(self, node):
+        self.next_link = node
+    
+    def set_prev_node(self, node):
+        self.prev_link = node
+    
 
 
 class Doubly_Linked_List:
@@ -39,10 +45,41 @@ class Doubly_Linked_List:
             current_node = current_node.get_next_node()
         return counter
     
+    def add_to_beginning(self, value):
+        node_to_add = Node_D(value)
+        node_to_add.set_next_node(self.head)
+        self.head.set_prev_node(node_to_add)
+        self.head = node_to_add
+
+    def add_to_end(self, value):
+        node_to_add = Node_D(value)
+        
+        if self.get_tail_node() == None:
+            current_node = self.head
+            while current_node:
+                if current_node.get_next_node() == None:
+                    self.tail = current_node
+                    current_node = None
+                else:
+                    current_node = current_node.get_next_node()
+
+        node_to_add.set_prev_node(self.tail)
+        self.tail.set_next_node(node_to_add)
+        self.tail = node_to_add
+
+        
+    
 
 # TESTING
 
 db = Doubly_Linked_List(3)
 print(db.check_size())
-print(db.get_head_node())
+print(db.get_head_node().get_value())
 print(db.get_tail_node())
+db.add_to_beginning(8)
+db.add_to_end(3)
+db.add_to_end(4)
+db.add_to_beginning(7)
+print(db.check_size())
+print(db.get_head_node().get_value())
+print(db.get_tail_node().get_value())
