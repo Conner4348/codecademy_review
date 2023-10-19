@@ -87,24 +87,46 @@ class Doubly_Linked_List:
                 string_list += '\n'
                 current_node = current_node.get_next_node()
         return string_list
+    
+    def remove_node(self, value):
+        current_node = self.head
 
+        if current_node.get_value() == value:
+            self.remove_head()
+            return
+        
+        current_node = current_node.get_next_node()
+        while current_node:
+            if current_node.get_value() == value:
+                prev_node = current_node.get_prev_node()
+                next_node = current_node.get_next_node()
+                break
+            current_node = current_node.get_next_node()
+            if current_node == None:
+                print('Could not find value in list.')
+                return
+            
+        if next_node == None:
+            self.remove_tail()
+        else:
+            next_node.set_prev_node(prev_node)
+            prev_node.set_next_node(next_node)
         
     
 
 # TESTING
 
 db = Doubly_Linked_List(3)
-#print(db.check_size())
-#print(db.get_head_node().get_value())
-#print(db.get_tail_node())
-db.add_to_beginning(8)
-db.add_to_end(3)
-db.add_to_end(4)
+db.add_to_end(1)
+db.add_to_beginning(2)
+db.add_to_beginning(4)
 db.add_to_beginning(7)
-print(db.check_size())
-#db.remove_head()
-#db.remove_tail()
-#print(db.check_size())
-#print(db.get_head_node().get_value())
-#print(db.get_tail_node().get_value())
+db.add_to_beginning(9)
+db.add_to_beginning(0)
+db.add_to_beginning(5)
+db.add_to_beginning(6)
+db.add_to_beginning(8)
+print(db.stringify_list())
+print('')
+db.remove_node(2)
 print(db.stringify_list())
