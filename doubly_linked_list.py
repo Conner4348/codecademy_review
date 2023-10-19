@@ -111,6 +111,54 @@ class Doubly_Linked_List:
         else:
             next_node.set_prev_node(prev_node)
             prev_node.set_next_node(next_node)
+
+
+def swap_nodes_doubly(list, val_one, val_two):
+    node_one = list.head
+    node_two = list.head
+
+    while True:
+        if node_one.get_value() == val_one:
+            node_one_prev = node_one.get_prev_node()
+            node_one_next = node_one.get_next_node()
+            break
+        node_one = node_one.get_next_node()
+        if node_one == None:
+            print('Could not find value in list.')
+            return
+        
+    while True:
+        if node_two.get_value() == val_two:
+            node_two_prev = node_two.get_prev_node()
+            node_two_next = node_two.get_next_node()
+            break
+        node_two = node_two.get_next_node()
+        if node_two == None:
+            print('Could not find value in list.')
+            return
+        
+    if node_one_prev == None:
+        node_one_next.set_prev_node(node_two)
+        node_two.set_next_node(node_one_next)
+        node_two.set_prev_node(node_one_prev)
+        list.head = node_two
+    elif node_two_prev == None:
+        node_two_next.set_prev_node(node_one)
+        node_one.set_next_node(node_two_next)
+        node_one.set_prev_node(node_two_prev)
+        list.head = node_one
+    if node_one_next == None:
+        node_one_prev.set_next_node(node_two)
+        node_two.set_prev_node(node_one_prev)
+        node_two.set_next_node(node_one_next)
+        list.tail = node_two
+    elif node_two_next == None:
+        node_two_prev.set_next_node(node_one)
+        node_one.set_prev_node(node_two_prev)
+        node_one.set_next_node(node_two_next)
+        list.tail = node_one
+
+    
         
     
 
@@ -128,5 +176,5 @@ db.add_to_beginning(6)
 db.add_to_beginning(8)
 print(db.stringify_list())
 print('')
-db.remove_node(2)
+swap_nodes_doubly(db, 8, 5)
 print(db.stringify_list())
