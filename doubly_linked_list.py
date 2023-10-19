@@ -67,19 +67,44 @@ class Doubly_Linked_List:
         self.tail.set_next_node(node_to_add)
         self.tail = node_to_add
 
+    def remove_head(self):
+        new_head = self.head.get_next_node()
+        new_head.set_prev_node(None)
+        self.head = new_head
+
+    def remove_tail(self):
+        new_tail = self.tail.get_prev_node()
+        new_tail.set_next_node(None)
+        self.tail = new_tail
+
+    def stringify_list(self):
+        string_list = ''
+
+        current_node = self.head
+        while current_node:
+            if current_node.get_value() != None:
+                string_list += str(current_node.get_value())
+                string_list += '\n'
+                current_node = current_node.get_next_node()
+        return string_list
+
         
     
 
 # TESTING
 
 db = Doubly_Linked_List(3)
-print(db.check_size())
-print(db.get_head_node().get_value())
-print(db.get_tail_node())
+#print(db.check_size())
+#print(db.get_head_node().get_value())
+#print(db.get_tail_node())
 db.add_to_beginning(8)
 db.add_to_end(3)
 db.add_to_end(4)
 db.add_to_beginning(7)
 print(db.check_size())
-print(db.get_head_node().get_value())
-print(db.get_tail_node().get_value())
+#db.remove_head()
+#db.remove_tail()
+#print(db.check_size())
+#print(db.get_head_node().get_value())
+#print(db.get_tail_node().get_value())
+print(db.stringify_list())
