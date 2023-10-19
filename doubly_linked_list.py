@@ -96,7 +96,7 @@ class Doubly_Linked_List:
             return
         
         current_node = current_node.get_next_node()
-        while current_node:
+        while True:
             if current_node.get_value() == value:
                 prev_node = current_node.get_prev_node()
                 next_node = current_node.get_next_node()
