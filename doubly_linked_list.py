@@ -157,7 +157,17 @@ def swap_nodes_doubly(list, val_one, val_two):
         node_one.set_prev_node(node_two_prev)
         node_one.set_next_node(node_two_next)
         list.tail = node_one
-
+        
+    if node_one_prev != None and node_one_next != None:
+        node_one_prev.set_next_node(node_two)
+        node_one_next.set_prev_node(node_two)
+        node_two.set_prev_node(node_one_prev)
+        node_two.set_next_node(node_one_next)
+    if node_two_prev != None and node_two_next != None:
+        node_two_prev.set_next_node(node_one)
+        node_two_next.set_prev_node(node_one)
+        node_one.set_prev_node(node_two_prev)
+        node_one.set_next_node(node_two_next)
     
         
     
@@ -176,5 +186,5 @@ db.add_to_beginning(6)
 db.add_to_beginning(8)
 print(db.stringify_list())
 print('')
-swap_nodes_doubly(db, 8, 5)
+swap_nodes_doubly(db, 4, 5)
 print(db.stringify_list())
