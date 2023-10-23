@@ -1,0 +1,49 @@
+$ git add hello_world.py
+$ git commit -m "Committing hello world."
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+$ git add hello_world.py
+$ git status
+On branch master
+nothing to commit, working tree clean
+$ git commit -m "Committing hello world."
+
+$ git commit -m "Committing hello world."
+$ git add hello_world.py
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+$ git commit -m "Committing hello world."
+$ git status
+On branch master
+nothing to commit, working tree clean
+$ git add hello_world.py
+
+
+
+
+fridge_contents = {"egg":12, "milk": 2, "apple": 6, "celery": 5}
+
+for variable1, variable2 in fridge_contents.items():
+    if variable1 in fridge_contents:
+        print(fridge_contents[variable1])
+    if variable2 in fridge_contents:
+        print(fridge_contents[variable2])
+
+
+
+for num in range(2,11,2):
+    print(num)
+
+for num in range(2,10,2):
+    print(num)
+
+for even in range(2, 10):
+    print(even)
+
+for num in range(2, 11):
+    if num % 2 == 1:
+        print(num)
